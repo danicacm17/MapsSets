@@ -1,104 +1,41 @@
-/*
-Write a function called hasOddNumber which accepts an array and returns true if the array contains at least one odd number, otherwise it returns false.
-
-Examples:
-    hasOddNumber([1,2,2,2,2,2,4]) // true
-    hasOddNumber([2,2,2,2,2,4]) // false
-*/
-
-function hasOddNumber(arr) {
-    // Use the some method to check if at least one element is odd
-    return arr.some(function(num) {
-      return num % 2 !== 0;
-    });
+function createInstructor(firstName, lastName){
+  return {
+    firstName,
+    lastName
   }
+}
 
-/*
-Write a function called hasAZero which accepts a number and returns true if that number contains at least one zero. Otherwise, the function should return false
 
-Examples:
-    hasAZero(3332123213101232321) // true
-    hasAZero(1212121) // false
-*/
+const favoriteNumber = 42;
+const instructor = {
+  firstName: "Colt",
+  [favoriteNumber]: "That is my favorite!"
+};
 
-function hasAZero(num) {
-    // Convert the number to a string, split it into characters, and use some to check if any character is '0'
-    return num.toString().split('').some(function(char) {
-      return char === '0';
-    });
+
+const instructors = {
+  firstName: "Colt",
+  sayHi() {
+    return "Hi!";
+  },
+  sayBye() {
+    return `${this.firstName} says bye!`;
   }
+};
 
-/*
-Write a function called hasOnlyOddNumbers which accepts an array and returns true if every single number in the array is odd. If any of the values in the array are not odd, the function should return false. 
 
-Examples:
-    hasOnlyOddNumbers([1,3,5,7]) // true
-    hasOnlyOddNumbers([1,2,3,5,7]) // false
-*/
-
-function hasOnlyOddNumbers(arr) {
-    // Use the every method to check if every element is odd
-    return arr.every(function(num) {
-      return num % 2 !== 0;
-    });
+const createAnimal = (species, verb, noise) => ({
+  species,
+  [verb]() {
+    return noise;
   }
+});
 
-/*
-Write a function called hasNoDuplicates which accepts an array and returns true if there are no duplicate values (more than one element in the array that has the same value as another). If there are any duplicates, the function should return false.
+// Test cases
+const d = createAnimal("dog", "bark", "Woooof!");
+console.log(d); // Output: {species: "dog", bark: ƒ}
+console.log(d.bark()); // Output: "Woooof!"
 
-Examples:
-    hasNoDuplicates([1,2,3,1]) // false
-    hasNoDuplicates([1,2,3]) // true
-*/
-
-function hasNoDuplicates(arr) {
-    // Use the every method to check if every element's index is equal to its first occurrence index
-    return arr.every(function(value, index) {
-      return arr.indexOf(value) === index;
-    });
-  }
-
-/*
-Write a function called hasCertainKey which accepts an array of objects and a key, and returns true if every single object in the array contains that key. Otherwise it should return false.
-
-Examples:
-    var arr = [
-        {title: "Instructor", first: 'Elie', last:"Schoppik"}, 
-        {title: "Instructor", first: 'Tim', last:"Garcia", isCatOwner: true}, 
-        {title: "Instructor", first: 'Matt', last:"Lane"}, 
-        {title: "Instructor", first: 'Colt', last:"Steele", isCatOwner: true}
-    ]
-    
-    hasCertainKey(arr,'first') // true
-    hasCertainKey(arr,'isCatOwner') // false
-*/
-
-function hasCertainKey(arr, key) {
-    // Use the every method to check if every object in the array contains the specified key
-    return arr.every(function(obj) {
-      return obj.hasOwnProperty(key);
-    });
-  }
-
-/*
-Write a function called hasCertainValue which accepts an array of objects and a key, and a value, and returns true if every single object in the array contains that value for the specific key. Otherwise it should return false.
-
-Examples:
-    var arr = [
-        {title: "Instructor", first: 'Elie', last:"Schoppik"}, 
-        {title: "Instructor", first: 'Tim', last:"Garcia", isCatOwner: true}, 
-        {title: "Instructor", first: 'Matt', last:"Lane"}, 
-        {title: "Instructor", first: 'Colt', last:"Steele", isCatOwner: true}
-    ]
-    
-    hasCertainValue(arr,'title','Instructor') // true
-    hasCertainValue(arr,'first','Elie') // false
-    
-*/
-
-function hasCertainValue(arr, key, value) {
-    // Use the every method to check if every object in the array contains the specified value for the given key
-    return arr.every(function(obj) {
-      return obj[key] === value;
-    });
-  }
+const s = createAnimal("sheep", "bleet", "BAAAAaaaa");
+console.log(s); // Output: {species: "sheep", bleet: ƒ}
+console.log(s.bleet()); // Output: "BAAAAaaaa"
